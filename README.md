@@ -1,5 +1,24 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Overview
+This Text Editor uses [Draft.js](https://draftjs.org/) to implement a suggestion list autocomplete feature.
+
+### Application logic
+- **Autocomplete Process**
+- An autocomplete process starts when the characters `<>` are typed. The `match string` is the continuous substring extending from the right of the <> to the caret. This substring must not contain \n.
+
+- **List of Suggestions**
+- The autocomplete process uses a debounce of `300ms`, a list of suggestions are displayed below the match string. Every suggestion displayed in the list matches the `match string` prefix. 
+- I have hardcode some random suggestions. 
+- The suggestions dynamically update in response to the user's input by adding it to the list of suggestions for the next use.
+- One suggestion is highlighted at all times. Pressing ‘up’ and ‘down’ arrow keys highlights another suggestion.
+- Pressing `enter` or `tab` will select the highlighted suggestion. 
+- After selecting a suggestion, the editor displays an "autocompleted entry" instead of the match string. The value of the autocompleted entry is equal to the highlighted suggestion, and if no suggestion was present, the match string is shown.
+- Classic mouse interactions can also be used to select and highlight suggestions.
+
+- **Autocompleted Entry**
+- An "autocompleted entry" can be entirely removed with one ‘backspace’ key press.
+
 ## Getting Started
 
 First, run the development server:
@@ -8,29 +27,8 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
